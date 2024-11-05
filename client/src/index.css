@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
+
+#root {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  background: rgb(40, 40, 40);
+}

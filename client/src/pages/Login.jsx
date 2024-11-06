@@ -1,9 +1,20 @@
+import { useContext } from "react";
 import { Alert, Button, Form, Row, Col, Stack } from "react-bootstrap";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
+  const {
+    logoutUser,
+    loginInfo,
+    updateLoginInfo,
+    loginUser,
+    loginError,
+    isLoginLoading,
+  } = useContext(AuthContext);
+
   return (
     <>
-      <Form>
+      <Form onSubmit={loginUser}>
         <Row
           style={{
             height: "100vh",
@@ -14,14 +25,28 @@ const Login = () => {
           <Col xs={6}>
             <Stack gap={3}>
               <h2>Đăng nhập</h2>
-              <Form.Control type="email" placeholder="Email" />
-              <Form.Control type="password" placeholder="Mật khẩu" />
+              <Form.Control
+                type="email"
+                placeholder="Email"
+                onChange={(e) =>
+                  updateLoginInfo({ ...loginInfo, email: e.target.value })
+                }
+              />
+              <Form.Control
+                type="password"
+                placeholder="Mật khẩu"
+                onChange={(e) =>
+                  updateLoginInfo({ ...loginInfo, password: e.target.value })
+                }
+              />
               <Button variant="primary" type="submit">
-                Đăng nhập
+                {isLoginLoading ? "Đang đăng nhập" : "Đăng nhập"}
               </Button>
-              <Alert variant="danger">
-                <p>Đã có lỗi xảy ra.</p>
-              </Alert>
+              {loginError?.error && (
+                <Alert variant="danger">
+                  <p>{loginError?.message}</p>
+                </Alert>
+              )}
             </Stack>
           </Col>
         </Row>

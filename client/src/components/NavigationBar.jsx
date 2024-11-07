@@ -16,7 +16,7 @@ const NavigationBar = () => {
         </h2>
         {user && (
           <span className="text-warning">
-            Hiện đang đăng nhập dưới tên: {user?.name}
+            Chúc bạn một ngày tốt lành, {user?.name}!
           </span>
         )}
         <Nav>

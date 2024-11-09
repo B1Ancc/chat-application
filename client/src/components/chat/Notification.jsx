@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { ChatContext } from "../../context/ChatContext";
 import { AuthContext } from "../../context/AuthContext";
 import { unreadNotificationsFunc } from "../../utils/UnreadNotifications";
+import notification from "../../assets/chat-left-fill.svg";
 import moment from "moment";
 import "moment/dist/locale/vi";
 moment.locale("vi");
@@ -33,7 +34,7 @@ const Notification = () => {
   return (
     <div className="notifications">
       <div className="notifications-icon" onClick={() => setIsOpen(!isOpen)}>
-        Sex
+      <img src={notification} height="20px" background-color="white" />
         {unreadNotifications?.length === 0 ? null : (
           <span className="notification-count">
             <span>{unreadNotifications?.length}</span>

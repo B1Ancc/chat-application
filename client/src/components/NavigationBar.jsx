@@ -11,7 +11,7 @@ const NavigationBar = () => {
       <Container>
         <h2>
           <Link to="/" className="link-light text-decoration-none">
-            Chatting
+            RandomlyChitChat
           </Link>
         </h2>
         {user && (

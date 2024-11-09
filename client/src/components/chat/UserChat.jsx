@@ -1,9 +1,15 @@
 import { Stack } from "react-bootstrap";
 import { useFetchRecipientUser } from "../../hooks/useFetchRecipient";
 import avatar from "../../assets/person-circle.svg"
+import { useContext } from "react";
+import { ChatContext } from "../../context/ChatContext";
 
 const UserChat = ({ chat, user }) => {
   const { recipientUser } = useFetchRecipientUser(chat, user);
+  const { onlineUsers } = useContext(ChatContext);
+
+  const isOnline = onlineUsers.some((user) => user?.userId === recipientUser?._id)
+
   return (
     <Stack
       direction="horizontal"
@@ -23,7 +29,7 @@ const UserChat = ({ chat, user }) => {
         <div className="d-flex flex-column align-items-end">
             <div className="date">8/11/2024</div>
             <div className="this-user-notifications">2</div>
-            <span className="user-online"></span>
+            <span className={isOnline ? "user-online" : ""}></span>
         </div>
     </Stack>
   );

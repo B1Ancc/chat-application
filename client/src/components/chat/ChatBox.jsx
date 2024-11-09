@@ -16,6 +16,13 @@ const ChatBox = () => {
   const { recipientUser } = useFetchRecipientUser(currentChat, user);
   const [textMessage, setTextMessage] = useState("");
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && textMessage.trim() !== "") {
+      e.preventDefault(); 
+      sendTextMessage(textMessage, user, currentChat._id, setTextMessage);
+    }
+  };
+
   console.log("text", textMessage);
 
   if (!recipientUser)
@@ -63,12 +70,14 @@ const ChatBox = () => {
           borderColor="rgba(72, 112, 22, 0.2)"
           language="vi"
           placeholder="Nhắn tin"
+          onKeyDown={handleKeyDown}
         />
         <button
           className="send-btn"
           onClick={() =>
             sendTextMessage(textMessage, user, currentChat._id, setTextMessage)
           }
+          tabIndex="0"
         >
           <img src={sendIcon} height="16px" background-color="white" />
         </button>
